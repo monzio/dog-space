@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "dog-space",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
