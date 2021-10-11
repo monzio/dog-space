@@ -1,0 +1,20 @@
+{
+  "areeCani": [
+      {
+        "name": "Montanaso",
+        "state" : "Delhi",
+        "address" :"Via Biancospino 2",
+        "rate": 5,
+        "latitude": 45.33648,
+        "longitude": 9.4677188
+      },
+      {
+        "name": "Galgagnano",
+        "state": "Delhi",
+        "address" :"Via dei Glicini",
+        "rate": 4,
+        "latitude": 45.33558,
+        "longitude": 9.4663168
+      }
+      ]
+}
