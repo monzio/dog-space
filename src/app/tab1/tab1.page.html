@@ -1,17 +1,76 @@
+
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+  <ion-toolbar color="warning">
+    <ion-button (click)="loadMap()" shape="round" color="dark">
+      <ion-icon slot="start" name="locate"></ion-icon>
+      Dove Sono
+    </ion-button>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleMostraTutteAreeCani()">
+        <ion-icon name="pin"></ion-icon>Mostra tutte
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
+
 </ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="map-wrapper">
+    <div #map id="map"></div>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <b>Lattitude</b>
+      </ion-col>
+      <ion-col>
+        {{latitude}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">
+        <b>Longitude</b>
+      </ion-col>
+      <ion-col>
+        {{longitude}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">
+        <b>Address</b>
+      </ion-col>
+      <ion-col>
+        {{address}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="fullList" class="ion-padding">
+    <ion-item>
+      <ion-label position="floating">Cerca Area Cani</ion-label>
+      <ion-input type="text" placeholder="Cerca Area Cani..." (input)="searchMaps($event)"></ion-input>
+    </ion-item>
+
+    <ion-list *ngIf="!isfiltered">
+      <ion-item *ngFor="let areaCani of areaCaniData" (click)="getAreaCaniDetails(areaCani)">
+        <ion-icon name="pin"></ion-icon>{{ areaCani.name }}
+        <p>State name: {{ areaCani.state }}</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="isfiltered">
+      <ion-item *ngFor="let areaCani of filteredAreeCani" (click)="getAreaCaniDetails(areaCani)">
+        <h2>
+          <ion-icon name="pin"></ion-icon>{{ areaCani.name }}
+        </h2>
+        <p>Indirizzo: {{ areaCani.address }}</p>
+        <ion-rating [rate]="areaCani.rate"
+          readonly="true"
+          size="default" >
+  </ion-rating>
+      </ion-item>
+    </ion-list>
+  </div>
+
 </ion-content>
